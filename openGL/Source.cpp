@@ -9,6 +9,7 @@
 #include "field.h"
 #include <Windows.h>
 #include <winuser.h>
+#include <stdio.h>
 
 using namespace std;
 const int Width = 600;
@@ -51,7 +52,7 @@ int main(void)
     {
         if (!stop)
         {
-            Sleep(300 * (1 / 5000 * pow(pole.length - 1, 2) + 1));
+            Sleep(300 * (-1 / 14000 * pow(pole.length - 1, 2) + 1));
 
             /* Render here */
             glClearColor(0, 0, 0, 0);
@@ -60,11 +61,7 @@ int main(void)
 
             glPushMatrix();
 
-            if (!pole.logic())
-            {
-                std::cout << "record -> " << pole.length - 2 << '\n';
-                break;
-            }
+            if (!pole.logic()) break;
             pole.Rendering();
 
             /* Swap front and back buffers */
@@ -75,9 +72,9 @@ int main(void)
 
             glfwSetWindowTitle(window, toString(pole.length - 2));
 
-            if (GetAsyncKeyState(VK_ESCAPE) & 0x01) return 2;
+            
         }
-
+        if (GetAsyncKeyState(VK_ESCAPE) & 0x01) return 2;
         stop = GetAsyncKeyState(VK_RETURN) & 0x01? !stop : stop;
     }
 
@@ -85,18 +82,24 @@ int main(void)
 
     glfwSetWindowShouldClose(window, GL_TRUE);
 
-    std::cout << "exit -> Esc" << '\n' << "restart:" << '\n';
+    system("cls");
+
+
+    std::cout << "delete a record -> d" << '\n' << "exit -> Esc" << "\n-------------\n" << "record: " << pole.Save() << '\n' << "result: " << pole.length - 2 << '\n' << "restart:" << '\n' ;
 
     Sleep(500);
     for (int i = 3; i >= 1; i--)
     {
         if (GetAsyncKeyState(VK_ESCAPE) & 0x01) return 2;
         else if (GetAsyncKeyState(VK_RETURN) & 0x01) break;
+        else if (GetAsyncKeyState(0x44) & 0x01)
+        {
+            remove("record.txt");
+            std::cout << "record deleted" << '\n';
+        }
         std::cout << (char)(i + 48) << '\n';
         Sleep(1000);
     }
-
-    system("cls");
 
     main();
 }

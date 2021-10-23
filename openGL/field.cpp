@@ -9,6 +9,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <winuser.h>
+#include <fstream>
 
 Field::Field()
 {
@@ -136,4 +137,35 @@ bool Field::logic()
     field[snake[0].x][snake[0].y] = 1;
 
     return true;
+}
+
+int Field::Save()
+{
+    char predRec[3];
+
+    std::ifstream rec;
+    rec.open("record.txt");
+    if (rec.is_open())rec >> predRec;
+    rec.close();
+
+    int k = 0;
+    int predRecI = 0;
+    for (int i = 2; i >= 0; i--)
+    {
+        if (predRec[i] != 0)
+        {
+            int ii = predRec[i] - 48;
+            predRecI += (ii)*pow(10, 2 - i - k);
+        }
+        else k++;
+    }
+
+    int recI = ((length - 2) > predRecI) ? length - 2 : predRecI;
+
+    std::ofstream rec2;
+    rec2.open("record.txt");
+    if (rec2.is_open())rec2 << recI;
+    else std::cout << "error: it is impossible to remember the record" << '\n';
+
+    return recI;
 }

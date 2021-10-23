@@ -6,7 +6,10 @@ class Field
 public:
 	Field();
 	void Rendering();
+	int Save();
 	bool logic();
+	void del();
+
 	int length = 2;
 
 private:

@@ -1,11 +1,12 @@
-﻿  field.cpp
+﻿  Source.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: APIENTRY: изменение макроопределения
 C:\Project\openGL\Includes\GLFW\glfw3.h(123): message : см. предыдущее определение "APIENTRY"
+C:\Project\openGL\openGL\Source.cpp(55,23): warning C4244: аргумент: преобразование "double" в "DWORD", возможна потеря данных
 LINK : warning LNK4098: библиотека по умолчанию "LIBCMT" конфликтует с использованием других библиотек; используйте /NODEFAULTLIB:library
   Создание кода
-  11 of 20 functions (55.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+C:\Project\openGL\openGL\Source.cpp(120): warning C4172: возвращение адреса локальной или временной переменной : str
+  All 170 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Создание кода завершено
-glew32s.lib(glew.obj) : warning LNK4099: "vc120.pdb" PDB не найден с "glew32s.lib(glew.obj)" или на "C:\Project\openGL\x64\Release\vc120.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+glew32s.lib(glew.obj) : warning LNK4099: "" PDB не найден с "glew32s.lib(glew.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
   openGL.vcxproj -> C:\Project\openGL\x64\Release\openGL.exe
